@@ -45,7 +45,8 @@ pipeline {
                     archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals"
                     sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
                 }
-                sh 'sleep 60' // Add Sleep
+                sleep(time: 1, unit: 'MINUTES')
+                //sh 'sleep 60' // Add Sleep
             }
         }
     }
