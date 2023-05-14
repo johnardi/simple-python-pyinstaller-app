@@ -46,10 +46,8 @@ pipeline {
                     sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
                 }
             }
-        }
-        stage('End') {
             steps {
-                sleep(time: 1, unit: 'MINUTES')
+                sleep(time: 1, unit: 'MINUTES') // Add Sleep
             }
         }
     }
