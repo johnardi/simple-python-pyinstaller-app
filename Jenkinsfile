@@ -34,7 +34,7 @@ pipeline {
                 IMAGE = 'cdrx/pyinstaller-linux:python2'
             }
             steps {
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                input message: 'Lanjutkan ke tahap Deploy? (Click "Proceed" to continue)' //Add Manual Approval
                 dir(path: env.BUILD_ID) {
                     unstash(name: 'compiled-results')
                     sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'"
@@ -44,7 +44,7 @@ pipeline {
                 success {
                     archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals"
                     sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
-                    //sh 'sleep 60' // Add Sleep
+                    sh 'sleep 60' // Add Sleep
                 }
             }
         }
